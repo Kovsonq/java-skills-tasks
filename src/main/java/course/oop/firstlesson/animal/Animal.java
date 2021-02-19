@@ -1,17 +1,21 @@
 package course.oop.firstlesson.animal;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @Slf4j
 @NoArgsConstructor
 public abstract class Animal {
-    public static HashMap<String, Integer> counter = new HashMap<>();
-    public static int count;
+    @Getter
+    private static Map<String, Integer> counter = new HashMap<>();
+    @Getter
+    private static int count;
 
     String type;
     String name;
@@ -46,5 +50,4 @@ public abstract class Animal {
             log.info(type + " " +  name + " can't swim distance " + swimLength);
         }
     }
-
 }
