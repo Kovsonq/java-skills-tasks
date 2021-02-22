@@ -13,10 +13,11 @@ public class Road extends Stage {
     public void go(Car c) {
         try {
             log.info(c.getName() + " начал этап: " + description);
-            Thread.sleep(length / c.getSpeed() * 1000);
+            Thread.sleep(length / c.getSpeed() * 1000L);
             log.info(c.getName() + " закончил этап: " + description);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 }
