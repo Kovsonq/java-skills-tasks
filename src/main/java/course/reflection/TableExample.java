@@ -7,9 +7,9 @@ import course.reflection.annatations.Table;
 @Table(name="worker")
 public class TableExample {
 
-    @Column(name = "name")
+    @Column
     private String name;
-    @Column(name = "age")
+    @Column
     private int age;
 
 }

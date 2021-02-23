@@ -25,15 +25,7 @@ public class MainApp {
 //            dropTableExample();
 //            transactionalExample();
 
-
-
-
-
-
-
-
-
-
+            createTableByAnnotatedClass(TableExample.class);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,13 +34,42 @@ public class MainApp {
         }
     }
 
+    private static void createTableByAnnotatedClass(Class tableExample) throws SQLException {
+        if (!tableExample.isAnnotationPresent(Table.class)){
+            throw new RuntimeException("@Table missed");
+        }
 
+        Map<Class,String> columnType = new HashMap<>();
+        columnType.put(int.class,"INTEGER");
+        columnType.put(String.class, "TEXT");
+
+        StringBuilder tableSql = new StringBuilder();
+        tableSql.append("CREATE TABLE ");
+        tableSql.append(((Table) tableExample.getAnnotation(Table.class)).name());
+
+        tableSql.append(" (");
+        Field[] fields = tableExample.getDeclaredFields();
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(Column.class)) {
+                tableSql.append(field.getName())
+                        .append(" ")
+                        .append(columnType.get(field.getType()))
+                        .append(", ");
+            }
+        }
+        tableSql.setLength(tableSql.length()-2);
+        tableSql.append(");");
+
+        log.info("String: {}", tableSql);
+
+        statement.executeUpdate(tableSql.toString());
+
+    }
 
     private static void transactionalExample() throws SQLException {
         connection.setAutoCommit(false);
         for (int i = 0; i < 10000; i++) {
             preparedStatement.setString(1,"Bob" + (i+1));
-//                preparedStatement.setInt(2,50);
             preparedStatement.setObject(2,50);
             preparedStatement.executeUpdate();
         }
