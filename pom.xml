@@ -16,6 +16,9 @@
         <spring-version>5.1.5.RELEASE</spring-version>
         <logger-slf4j-version>2.0.0-alpha1</logger-slf4j-version>
         <sqlite-version>3.34.0</sqlite-version>
+        <postgre-version>42.2.19</postgre-version>
+        <hibernate-version>5.4.28.Final</hibernate-version>
+        <validator-version>7.0.1.Final</validator-version>
     </properties>
 
     <dependencies>
@@ -42,11 +45,30 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${logger-slf4j-version}</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>${sqlite-version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgre-version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate-version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${validator-version}</version>
         </dependency>
 
 
