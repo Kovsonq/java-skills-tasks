@@ -65,7 +65,8 @@ public class TaskImplementation {
                             item.setVal(item.getVal() + 1);
                             uncheckableSleep(5);
                             try {
-                                    session.save(item);
+//                                if element doesn't exist, in this situation it is
+//                                    session.save(item);
                                     session.getTransaction().commit();
                                     updated = true;
                                     count.getAndIncrement();
@@ -117,7 +118,8 @@ public class TaskImplementation {
                         uncheckableSleep(5);
 
                         try {
-                            session.save(item);
+//                            if element doesn't exist, in this situation it is
+//                            session.save(item);
                             session.getTransaction().commit();
                         } catch (OptimisticLockException e) {
                             session.getTransaction().rollback();
