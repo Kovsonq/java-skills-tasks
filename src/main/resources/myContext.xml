@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="springBean" class="course.spring.examplexmlconfig.SpringBean"/>
+
+    <bean id="animalClassNameGenerator" class="course.spring.examplexmlconfig.AnimalClassNameGenerator"/>
+    <bean id="shapesClassNameGenerator" class="course.spring.examplexmlconfig.ShapesClassNameGenerator"/>
+
+    <bean id="javaCodeCreator" class="course.spring.examplexmlconfig.JavaCodeCreator">
+        <property name="classNameGenerator">
+            <ref bean="animalClassNameGenerator"/>
+        </property>
+    </bean>
+
+    <bean id="cppCodeCreator" class="course.spring.examplexmlconfig.CppCodeCreator">
+        <constructor-arg ref="shapesClassNameGenerator"/>
+    </bean>
+
+</beans>
